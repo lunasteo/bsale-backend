@@ -1,9 +1,17 @@
-export default class ProductController {
-    async getAllProducts() {
-        res.json(test);
-    }
-
-    async getOnProducts() {
+class ProductController {
+    async getAllProducts(req, res, next){
 
     }
+
+    async getOneProduct(req, res, next){
+
+    }
+
+    async searchProduct(req, res, next){
+        
+    }
+
+
 }
+
+export default ProductController;
