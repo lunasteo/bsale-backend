@@ -1,4 +1,6 @@
 import app from 'express';
+
+import ProductController from '../controllers/productController.js';
 const routes = app.Router();
 
 routes('/', new ProductController().getAllProducts);
