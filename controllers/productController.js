@@ -24,7 +24,6 @@ class ProductController {
             const { productSearch } = req.params;
             const query = `SELECT * FROM product where name LIKE "%${productSearch}%"`;
             const [data] = await db.query(query);
-            console.log(data);
             if (data.length === 0) {
                 throw boom.notFound('Proximamente agregaremos el productos que buscas')
             }
