@@ -6,10 +6,16 @@ class ProductController {
 
     async getAllProducts(req, res, next){
         try {
-            const productList = await Product.findAll();
+            const { page= 0, size= 5} = req.query;
+            let options = {
+                limit: +size,
+                offset: (+page) * (+size)
+            };
+            const { count, rows } = await Product.findAndCountAll(options);
             res.json({
-                data: productList
-            })
+                total: count,
+                data: rows
+            });
         } catch (error) {
             next(error)
         }
@@ -27,6 +33,7 @@ class ProductController {
             if (data.length === 0) {
                 throw boom.notFound('Proximamente agregaremos el productos que buscas')
             }
+            
             res.json(data);
         } catch (error) {
             next(error)
