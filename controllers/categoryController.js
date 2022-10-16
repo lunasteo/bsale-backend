@@ -1,14 +1,13 @@
+class CategoryController{
 
-const categoryService = new CategoryService();
+    async getAllCategories(){
 
-export const getAllCategories = async (req, res, next) => {
-    const categoriesList = await categoryService.getCategories();
-    res.json(categoriesList);
+    }
+
+    async getOneCategory(){
+        
+    }
 
 }
 
-export const getCategoryById = async (req, res, next) => {
-    const { id } = req.params;
-    const category = await categoryService.getOneCategoryById(id);
-    res.json(category)
-}
+export default CategoryController;
