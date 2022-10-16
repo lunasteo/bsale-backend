@@ -1,4 +1,6 @@
 class ProductController {
+    constructor(){}
+
     async getAllProducts(req, res, next){
 
     }
@@ -10,7 +12,6 @@ class ProductController {
     async searchProduct(req, res, next){
         
     }
-
 
 }
 
