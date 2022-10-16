@@ -60,8 +60,59 @@ routes.get('/', new ProductController().getAllProducts);
  *              description: No se encontraron productos
  *      
  */
-
 routes.get('/:id', new ProductController().getOneProduct);
-routes.get('/search/:productSearch', new ProductController().searchProduct)
+/**
+ * @swagger
+ * /api/products/{id}:
+ *  get:
+ *      summary: Devuelve un producto segun su id
+ *      tags: [Product]
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: string
+ *            required: true
+ *            description: the product id
+ *      responses:
+ *          200:
+ *              description: one category
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          items:
+ *                              $ref: '#/components/schemas/Product'
+ *          404:
+ *              description: Product not found
+ * 
+ */
+routes.get('/search/:productSearch', new ProductController().searchProduct);
+/**
+ * @swagger
+ * /api/products/search/{productSearch}:
+ *  get:
+ *      summary: Devuelve una lista de producto segun caracteres
+ *      tags: [Product]
+ *      parameters:
+ *          - in: path
+ *            name: productSearch
+ *            schema:
+ *              type: string
+ *            required: true
+ *            description: the product name
+ *      responses:
+ *          200:
+ *              description: Productos que coinciden con el criterio de busqueda
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          items:
+ *                              $ref: '#/components/schemas/Product'
+ *          404:
+ *              description: Producto no encontrado
+ * 
+ */
 
 export default routes;
