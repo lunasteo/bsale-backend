@@ -5,6 +5,6 @@ const routes = app.Router();
 
 routes.get('/', new ProductController().getAllProducts);
 routes.get('/:id', new ProductController().getOneProduct);
-routes.get('/search/:search', new ProductController().searchProduct)
+routes.get('/search/:productSearch', new ProductController().searchProduct)
 
 export default routes;
