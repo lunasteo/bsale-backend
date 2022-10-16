@@ -3,20 +3,21 @@ import express from 'express';
 import dotenv from 'dotenv';
 
 //importaciones de funciones propias
-import routes from './routes/index.js';
+import routerApi from "./routes/index.js";
 
-//Variables
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
-//middlewares
 app.use(express.json());
-app.use('/', routes)
+app.use(cors());
+
+connectDb();
+routerApi(app);
 
 //App para iniciar API
 const startServer = () => {
     app.listen(port, () => {
-    console.log(`API running on http://127.0.0.1:${port}/`)
+        console.log(`API running on http://127.0.0.1:${port}/`)
     })
 }
 

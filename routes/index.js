@@ -1,9 +1,12 @@
-import app from 'express'
+import express from "express";
+import productsRouter from './productRouter.js';
+import categoryRouter from './categoryRouter.js';
 
-const routes = app.Router();
+function routerApi(app) {
+    const router = express.Router();
+    app.use('/api', router);
+    router.use('/products', productsRouter)
+    router.use('/category', categoryRouter);
+}
 
-routes.get('/', (req, res) => {
-    res.json({msg: 'Home'})
-});
-
-export default routes;
+export default routerApi;
