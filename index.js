@@ -23,7 +23,7 @@ const swaggerSpec = {
     definition: {
         openapi: '3.0.3',
         info: {
-            title: 'Challange Alkemy Node.js',
+            title: 'Challange Bsale',
             version: '1.0.0'
         }
     },
