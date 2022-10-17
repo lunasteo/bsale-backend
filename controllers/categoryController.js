@@ -1,14 +1,38 @@
+import boom from '@hapi/boom';
 
-const categoryService = new CategoryService();
+import { Category, Product } from "../models/index.js";
+class CategoryController {
+    constructor() { }
 
-export const getAllCategories = async (req, res, next) => {
-    const categoriesList = await categoryService.getCategories();
-    res.json(categoriesList);
+    async getAllCategories(req, res, next) {
+        try {
+            const categories = await Category.findAll();
+            res.status(200).json(categories);
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async getOneCategory(req, res, next){
+        try {
+            const { id } = req.params;
+            //Busqueda de la categoria y productos asociados.
+            const category = await Category.findByPk(id, {
+                include: [
+                    {model: Product}
+                ]
+            })
+            //Respuesta en caso de encontrar la categoria.
+            if (!category) {
+                throw boom.notFound('Categoria no existe')
+            }
+            res.status(200).json( {data: category});
+        } catch (error) {
+            next(error)
+        }
+    }
+
 
 }
 
-export const getCategoryById = async (req, res, next) => {
-    const { id } = req.params;
-    const category = await categoryService.getOneCategoryById(id);
-    res.json(category)
-}
+export default CategoryController;
