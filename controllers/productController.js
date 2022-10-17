@@ -6,15 +6,19 @@ class ProductController {
 
     async getAllProducts(req, res, next){
         try {
-            const { page= 0, size= 5} = req.query;
+            const { page= 0, size= 10} = req.query;
             let options = {
                 limit: +size,
                 offset: (+page) * (+size)
             };
             const { count, rows } = await Product.findAndCountAll(options);
+
+            const totalPages = Math.round(count / size);
+
             res.json({
                 total: count,
-                data: rows
+                data: rows,
+                totalPages
             });
         } catch (error) {
             next(error)
